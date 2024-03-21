@@ -20,10 +20,10 @@ function formatDateTime(date) {
     return date.toLocaleString('en-US', { 
         month: 'short', 
         day: 'numeric', 
-        year: 'numeric', 
+        // year: 'numeric',
         hour: '2-digit', 
         minute: '2-digit', 
-        hour12: true 
+        hour12: false
     });
 }
 
@@ -46,7 +46,8 @@ function updateRunTimeDisplay() {
             newElement.textContent = `${localTime}`;
             // newElement.style.cssText = 'position: absolute; top: 0; left: 0;';
             el.parentElement.style='position: relative'
-            el.style="display: none; visibility: hidden;"
+            // el.style="display: none; visibility: hidden;"
+            // el.textContent = `${localTime} (${el.textContent})`;
 
               // Remove or hide the SVG element
               const svgElement = el.parentElement.querySelector('svg.octicon-calendar');
@@ -61,7 +62,7 @@ function updateRunTimeDisplay() {
     });
 }
 function checkForChanges() {
-    const targetNode = document.querySelector('.PageLayout-content-centered-xl');
+    const targetNode = document.querySelector('.PageLayout-content-centered-xl') || document.querySelector('div.Layout-main');
     if (targetNode && !targetNode.classList.contains('full-time-updated')) {
         updateRunTimeDisplay();
         targetNode.classList.add('full-time-updated');
